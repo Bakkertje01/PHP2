@@ -1,0 +1,6 @@
+1  : Name: Skittles, Description Kistje van 4, Prijs: €14.95, Aantal: 11, Uitgewerkte prijs: €164.45
+2 : Name: lagis, Description Muismat, Prijs: €0.99, Aantal: 44, Uitgewerkte prijs: €43.56
+3 : Name: Skribent, Description Boekensteun, Prijs: €3.99, Aantal: 22, Uitgewerkte prijs: €87.78
+4 : Name: Moppe, Description Miniladekast, Prijs: €11.95, Aantal: 22, Uitgewerkte prijs: €262.9
+5 : Name: Dokument, Description Pennekoker, Prijs: €1.99, Aantal: 0, Uitgewerkte prijs: €0
+6 : Name: Totale prijs: €558.69

@@ -1,0 +1,43 @@
+else {
+    $DBName = "bugreport";
+
+    if (!mysqli_select_db($DBConnect, $DBName)) {
+        echo "there are no records";
+    } else {
+        $sql = "SELECT * FROM bugs WHERE countID = " . $_GET['CountID'];
+        $result = $DBConnect->query($sql);
+
+        if ($result->num_rows > 0) {
+            echo "<h2>Bug report list</h2>";
+            // Make table
+            echo "<table border='1'>";
+            // Make table header
+            echo "<th style='text-align: left;'>ID</th><th>Product name</th><th>Version</th><th>Hardware type</th><th>Operating system</th><th>Frequency occurence</th><th>Proposed solution</th>";
+            echo "<form action='bugedit.php' method='post'>";
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+
+                echo "<tr>";
+
+                echo "<td>" . $row['countID'] . "</td>";
+                echo "<td>" . "<input type='text' name='productname' placeholder='" . $row['productname'] . "'" . "</td>";
+                echo "<td>" . "<input type='text' name='version' placeholder='" . $row['version'] . "'" . "</td>";
+                echo "<td>" . "<input type='text' name='hardwaretype' placeholder='" . $row['hardwaretype'] . "'" . "</td>";
+                echo "<td>" . "<input type='text' name='operationsystem' placeholder='" . $row['operationsystem'] . "'" . "</td>";
+                echo "<td>" . "<input type='number' name='foo' placeholder='" . $row['foo'] . "'" . "</td>";
+                echo "<td>" . "<input type='text' name='proposedsolution' placeholder='" . $row['proposedsolution'] . "'" . "</td>";
+                echo "<td>" . "<input type='hidden' name='id' value='" . $_GET['CountID'] . "'";
+
+                echo "</tr>";
+            }
+            mysqli_free_result($result);
+            echo "</table>";
+            echo "<br><input type='submit' name='update' value='Update'><br><br>";
+            echo "<a href='bugreport.php'>Report bug</a><br><br>";
+
+            echo '</form>';
+        } else {
+            echo "Which <a href='showbug.php'>bug</a> would you like to edit?";
+        }
+    }
+}
