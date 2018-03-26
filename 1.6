@@ -1,0 +1,28 @@
+
+    if (isset($_POST['update'])){
+        foreach ($items as $key => $item){
+            $quantity[$key]= $_POST['quantity-' . $key . '']; //standaard altijd op 0
+            $total[$key] = $_POST['quantity-' . $key .''] * $items[$key][2]; //
+            $totalAll = array_sum($total);
+        };
+    }
+
+    if (isset($_POST['submit'])) {
+
+        $date = date("Y-m-d-h-i-s");
+
+        $orderFile = fopen("OnlineOrders\\$date.txt", "w") or die("Unable to open file!");
+
+        foreach ($items as $key => $Product) {
+            $quantity[$key] = $_POST['quantity-' . $key . ''];
+            $total[$key] = $_POST['quantity-' . $key . ''] * $items[$key][2];
+            $totalAll = array_sum($total);
+            $txt = "Name:$Product[0] - Price:$Product[2] - Quantity:$quantity[$key] - Total:$total[$key]\n";
+            fwrite($orderFile, $txt);
+        };
+
+        $txt = "Grand Total:$totalAll";
+        fwrite($orderFile, $txt);
+        fclose($orderFile);
+    }
+?>
